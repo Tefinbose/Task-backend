@@ -1,14 +1,14 @@
 
 import jwt from "jsonwebtoken"                 // 1)    Check the user exists
 import bcrypt from "bcryptjs"                  // 2)    Hash password         
-import User from "../model/user.js";            // 3)    create a user                                  
+import user from "../model/user.js";            // 3)    create a user                                  
 
 export const register = async (req, res) => {
     try {
         const { name, email, password } = req.body
         console.log(req.body)
 
-        const isUserExist = await User.findOne({ email })
+        const isUserExist = await user.findOne({ email })
         if (isUserExist) {
             res.status(401).json({ message: "User already existed" })
         }
@@ -16,7 +16,7 @@ export const register = async (req, res) => {
         const hashPassword = await bcrypt.hash(password, 10)
 
         // Create a user
-        const newUser = await User.create({
+        const newUser = await user.create({
             name,
             email,
             password: hashPassword
@@ -38,10 +38,10 @@ export const login = async (req, res) => {
     try {
         const { name, email, password } = req.body
         
-        const isemailExist = await User.findOne({ email })
+        const isemailExist = await user.findOne({ email })
 
         // check email exists
-        const user = await User.findOne({ email })
+        const user = await user.findOne({ email })
         if (!user) {
             return res.status(404).json({ message: "User not found" })
         }
