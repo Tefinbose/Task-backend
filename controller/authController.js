@@ -1,7 +1,7 @@
 
 import jwt from "jsonwebtoken"                 // 1)    Check the user exists
 import bcrypt from "bcryptjs"                  // 2)    Hash password         
-import User from "../model/user.js";            // 3)    create a user                                  
+import User from "../model/User.js";            // 3)    create a user                                  
 
 export const register = async (req, res) => {
     try {
