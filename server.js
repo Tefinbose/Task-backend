@@ -24,8 +24,8 @@ Mongoose
     .catch((error) => { console.log("MongoDb-error", error) })
 
 // Routes
-app.use("api/auth",authRoutes)
-app.use("api/tasks",taskRoute)
+app.use("/api/auth",authRoutes)
+app.use("/api/tasks",taskRoute)
 
 // Test route
 app.get("/",(req,res)=>{
